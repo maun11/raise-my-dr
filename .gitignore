@@ -1,0 +1,7 @@
+# Internal ops notes — sheet IDs, n8n instance, credential names. Never publish.
+HANDOVER.md
+
+.claude/settings.local.json
+__pycache__/
+*.pyc
+.DS_Store
