@@ -25,10 +25,15 @@ in rings.
 ## CONFIG — set these before first use
 
 ```
-ROSTER_CSV_URL  = <published Google Sheet CSV of the Roster tab>
-JOIN_FORM_URL   = <Google Form for new members>
-SUBMIT_FORM_URL = <Google Form for manual URL submission>
+ROSTER_CSV_URL   = <published Google Sheet CSV of the Roster tab — NOT an /edit link>
+JOIN_FORM_URL    = https://docs.google.com/forms/d/e/1FAIpQLScNiPNmj9IikGWvn_KVziP5ol0aOFwIZlsz-8dmP-KQjbnumw/viewform
+SUBMIT_FORM_URL  = <Google Form for manual URL submission>
+JOIN_WEBHOOK_URL = <optional — n8n intake webhook, enables in-chat join>
 ```
+
+`ROSTER_CSV_URL` must be a **published** CSV (File → Share → Publish to web →
+Roster → CSV). A `/edit` link is the whole workbook, including private member
+contact details — never use one here and never give one to a member.
 
 If `ROSTER_CSV_URL` is not set, tell the user to get it from the group and stop.
 
@@ -184,13 +189,33 @@ For people who found this skill outside the group.
    approximate age signals, average word count on three sampled posts, and
    outbound links per post. Read `references/vetting.md` for the thresholds.
 3. Tell them honestly whether they're likely to pass the gate.
-4. Give them `JOIN_FORM_URL` and explain the two things that matter:
-   - Authority is **verified by us**, not taken from the form. Claimed numbers
-     are ignored.
+4. Collect the fields the exchange actually needs, and nothing more:
+   `company`, `website`, `blog_url`, `sitemap_url`, `niche`, `email`,
+   and up to three `target_url`s they want links pointed at.
+5. Submit the application:
+
+   **If `JOIN_WEBHOOK_URL` is set** — POST the collected fields as JSON:
+
+   ```bash
+   curl -sS -X POST "$JOIN_WEBHOOK_URL" \
+     -H "Content-Type: application/json" \
+     -d '{"source":"skill","company":"...","website":"...","blog_url":"...",
+          "sitemap_url":"...","niche":"...","email":"...","target_urls":["..."]}'
+   ```
+
+   Show them the exact payload and get a yes before sending it. It creates a
+   **pending application**, nothing more — no member ID, no points, no roster
+   entry until a human approves it.
+
+   **Otherwise** — give them `JOIN_FORM_URL` and have them fill it themselves.
+
+6. Explain the two things that matter:
+   - Authority is **verified by us**, not taken from the application. Claimed
+     numbers are ignored.
    - Everyone starts on **Probation**: give two links that stay live 30 days,
      then you can start receiving.
 
-Never promise membership. The gate is automated and a human reviews edge cases.
+Never promise membership. The gate is automated and a human reviews every row.
 
 ---
 
@@ -204,8 +229,12 @@ table in `references/points-and-rules.md` to name the band they can reach.
 
 ## Hard rules
 
-Never write to the sheet. This skill reads the roster and nothing else; all
-submissions go through the forms.
+Never write to Roster, Rounds or Ledger. This skill reads the published Roster CSV
+and nothing else. It holds no credentials, so it *cannot* award points, change a
+status, or edit a balance — that is the whole point, and it must stay true.
+
+The one thing it may submit is a **join application** (Flow C), which lands in a
+pending queue for human approval and grants nothing on its own.
 
 Never place two exchange links in one post. This is the rule that keeps the
 network's posts from reading as link farms, and it is not negotiable.

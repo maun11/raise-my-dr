@@ -10,24 +10,40 @@ assignments rotate in rings, so link profiles stay natural.
 
 ## Install
 
-**Claude Code / Cowork:** clone this repo into your skills directory, or install
-the `.skill` file.
+**Claude Code — as a plugin (recommended).** In Claude Code:
 
-```bash
-git clone https://github.com/maun11/raise-my-dr.git ~/.claude/skills/backlink-exchange
+```
+/plugin marketplace add maun11/raise-my-dr
 ```
 
-**Anywhere else:** paste `SKILL.md` into a chat as your first message.
+then `/plugin install backlink-exchange@raise-my-dr` and `/reload-plugins`.
+
+**Anything else:** paste `SKILL.md` into a chat as your first message.
+
+## Commands
+
+```
+/backlink-exchange:brief          who am I linking to, what will I earn, write the post
+/backlink-exchange:check <url>    verify a published link passes every rule
+/backlink-exchange:join           check whether your site clears the gate, then apply
+/backlink-exchange:status         points balance and what it can afford
+```
+
+`/backlink-exchange` on its own works too, and routes on what you ask for.
 
 ## Configure
 
-Open `SKILL.md` and set three values at the top:
+Open `SKILL.md` and set the values at the top:
 
 ```
-ROSTER_CSV_URL  = published Google Sheet CSV of the Roster tab
-JOIN_FORM_URL   = Google Form for new members
-SUBMIT_FORM_URL = Google Form for manual URL submission
+ROSTER_CSV_URL   = published CSV of the Roster tab (Publish to web → Roster → CSV)
+JOIN_FORM_URL    = Google Form for new members
+SUBMIT_FORM_URL  = Google Form for manual URL submission
+JOIN_WEBHOOK_URL = optional; enables applying from inside Claude
 ```
+
+`ROSTER_CSV_URL` must be a **published** CSV, not a `/edit` link. An `/edit` link
+exposes the entire workbook, including private member contact details.
 
 ## Use
 

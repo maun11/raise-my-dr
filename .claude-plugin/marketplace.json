@@ -1,0 +1,23 @@
+{
+  "name": "raise-my-dr",
+  "owner": {
+    "name": "Maunil Parikh",
+    "url": "https://github.com/maun11"
+  },
+  "metadata": {
+    "description": "Give one editorial link, earn points, get links back. A vetted backlink exchange for B2B startups.",
+    "version": "1.1.0"
+  },
+  "plugins": [
+    {
+      "name": "backlink-exchange",
+      "source": "./",
+      "description": "Get your link assignment, see what you will earn, draft the post, and verify the published link.",
+      "version": "1.1.0",
+      "author": {
+        "name": "Maunil Parikh"
+      },
+      "keywords": ["seo", "backlinks", "link-building", "b2b"]
+    }
+  ]
+}

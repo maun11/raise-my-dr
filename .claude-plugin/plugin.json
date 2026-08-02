@@ -1,0 +1,22 @@
+{
+  "name": "backlink-exchange",
+  "displayName": "Backlink Exchange",
+  "version": "1.1.0",
+  "description": "A points-based backlink exchange for B2B startups. Picks your assigned partner from the live roster, shows what you will earn before you write, interviews you for your own angle, drafts the post with the link placed correctly, and verifies the published page.",
+  "author": {
+    "name": "Maunil Parikh",
+    "url": "https://github.com/maun11"
+  },
+  "homepage": "https://github.com/maun11/raise-my-dr",
+  "repository": "https://github.com/maun11/raise-my-dr",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "backlinks",
+    "link-building",
+    "backlink-exchange",
+    "b2b",
+    "content-marketing",
+    "link-verification"
+  ]
+}
