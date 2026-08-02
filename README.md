@@ -98,20 +98,33 @@ real work for a month before it can extract anything.
 
 ---
 
-## Install
+## Install (30 seconds)
 
-**In Claude Code:**
+Works in **Claude Cowork** and **Claude Code**. Open either one, paste this, and
+send it:
+
+> Install the skill at https://github.com/maun11/raise-my-dr
+
+Claude does the rest. That's it — no terminal, no setup, no config file.
+
+<details>
+<summary>If you'd rather type the commands yourself</summary>
 
 ```
 /plugin marketplace add maun11/raise-my-dr
 ```
 
-Then `/plugin install backlink-exchange@raise-my-dr` and `/reload-plugins`.
+then `/plugin install backlink-exchange@raise-my-dr` and `/reload-plugins`.
 
-**Anywhere else:** paste the contents of `SKILL.md` into a chat as your first
-message.
+Anywhere else (claude.ai, ChatGPT, whatever you use): paste the contents of
+`SKILL.md` into a chat as your first message.
 
-### Commands
+</details>
+
+### What you can say
+
+You can use the commands below, or just talk to it — "who am I linking to this
+week?" works as well as `/backlink-exchange:brief`.
 
 | Command | What it does |
 |---|---|
@@ -124,25 +137,26 @@ message.
 
 ---
 
-## Check a link without installing anything
+## Checking your post
 
-```bash
-python3 scripts/check_link.py https://yourblog.com/post partner-domain.com
-```
-
-Standard library only — no `pip install`. It tells you exactly what passed and
-what didn't:
+Paste the URL. That's the whole job.
 
 ```
-  PASS  https://yourblog.com/post
-    PASS  link_present
-    PASS  dofollow
-    PASS  in_body_content
-    PASS  single_link_to_partner
-    PASS  word_count_600_plus
-    PASS  outbound_under_15
-    PASS  anchor_not_empty
+/backlink-exchange:check https://yourblog.com/my-new-post
 ```
+
+Claude runs the check itself and tells you in plain English:
+
+> **PASS** — link found in the third paragraph, dofollow, 1,240 words, 9
+> outbound links. You're done. Points post within 15 minutes.
+
+or
+
+> **FAIL** — the link is in your footer, not the article body. Want me to
+> rewrite the paragraph and place it properly?
+
+You never run a command, install Python, or read a log. If it fails, Claude
+offers to fix the post for you.
 
 ---
 

@@ -146,8 +146,9 @@ Before you publish
   □ Anchor text is one of the three above, not an exact-match keyword
 
 After you publish
-  Run:  /backlink check <your published url>
-  Points post automatically once the link is verified live.
+  Paste the URL here and I'll check it.
+  Points post automatically within 15 minutes — you don't have to submit
+  anything.
 ```
 
 Then, once, in plain text — never as a hard sell:
@@ -161,22 +162,30 @@ Then, once, in plain text — never as a hard sell:
 
 ## Flow B — Check
 
-Run the verifier:
+The member pastes a URL. **You run the check for them** — silently, using the
+bundled verifier. Never print the command, never ask them to install anything,
+never show them raw JSON.
 
 ```bash
-python scripts/check_link.py <published_url> <partner_domain> --json
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/check_link.py" <published_url> <partner_domain> --json
 ```
 
-It checks the link exists, is dofollow, sits in body content, is the only link to
-that partner, and that the host post clears 600 words and 15 outbound links.
+If they didn't say which partner, look it up from their assignment rather than
+asking. Only ask if you genuinely can't determine it.
 
-- **PASS** — tell them they're done, points post on the next automated sweep
-  (within 24 hours, no action needed). If their site has no sitemap, give them
-  `SUBMIT_FORM_URL` to log the URL manually.
-- **FAIL** — list each failed check and exactly what to change. Offer to rewrite
-  the paragraph containing the link if placement was the problem.
+Then answer in plain English:
 
-Run this the same way *before* publishing on a staging URL if they have one.
+- **PASS** — say they're done and that points post automatically within 15
+  minutes. No action needed. If their site has no sitemap, give them
+  `SUBMIT_FORM_URL` so the post can be logged manually.
+- **FAIL** — say what's wrong in one sentence, then **offer to fix it**. For a
+  placement problem, rewrite the paragraph with the link in it. For a word-count
+  or outbound-link problem, say exactly what to add or remove.
+
+Translate every check into something a founder can act on. "in_body_content:
+false" is not an answer — "the link is in your footer, not the article" is.
+
+Works on a staging URL too, before they publish.
 
 ---
 
