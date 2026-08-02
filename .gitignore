@@ -5,3 +5,6 @@ HANDOVER.md
 __pycache__/
 *.pyc
 .DS_Store
+
+# Built bundle — distributed via GitHub Releases, not committed
+dist/
