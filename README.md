@@ -180,20 +180,27 @@ moment this sends anything on your behalf it becomes spam tooling.
 
 ---
 
-## Configure (operators only)
+## Not a member yet?
 
-Members can skip this. Open `SKILL.md` and set:
+Install the skill, then say:
 
 ```
-ROSTER_CSV_URL   = published CSV of the Roster tab
-JOIN_FORM_URL    = Google Form for new members
-SUBMIT_FORM_URL  = Google Form for manual URL submission
-JOIN_WEBHOOK_URL = optional; lets people apply from inside Claude
+/backlink-exchange:join
 ```
 
-`ROSTER_CSV_URL` must be a **published** CSV — File → Share → Publish to web →
-Roster → CSV. Never use an `/edit` link: that exposes the whole workbook,
-including private member contact details.
+Claude looks at your site, tells you honestly whether you'd clear the bar, and —
+if you want — **submits your application right there in the chat**. No form, no
+tab-switching.
+
+Prefer a form? [Apply here](https://docs.google.com/forms/d/e/1FAIpQLScNiPNmj9IikGWvn_KVziP5ol0aOFwIZlsz-8dmP-KQjbnumw/viewform)
+instead. Same queue, same review.
+
+Either way, applying grants nothing on its own — no member ID, no points, no
+roster entry until a human approves it.
+
+---
+
+Running your own exchange on this? Setup lives in [OPERATING.md](OPERATING.md).
 
 ---
 

@@ -28,7 +28,7 @@ in rings.
 ROSTER_CSV_URL   = <published Google Sheet CSV of the Roster tab — NOT an /edit link>
 JOIN_FORM_URL    = https://docs.google.com/forms/d/e/1FAIpQLScNiPNmj9IikGWvn_KVziP5ol0aOFwIZlsz-8dmP-KQjbnumw/viewform
 SUBMIT_FORM_URL  = <Google Form for manual URL submission>
-JOIN_WEBHOOK_URL = <optional — n8n intake webhook, enables in-chat join>
+JOIN_WEBHOOK_URL = https://growth-n8n.hee8kl.easypanel.host/webhook/backlink-join
 ```
 
 `ROSTER_CSV_URL` must be a **published** CSV (File → Share → Publish to web →
@@ -203,7 +203,8 @@ For people who found this skill outside the group.
    and up to three `target_url`s they want links pointed at.
 5. Submit the application:
 
-   **If `JOIN_WEBHOOK_URL` is set** — POST the collected fields as JSON:
+   **Default path — apply right here.** `JOIN_WEBHOOK_URL` is set, so there is
+   no form to fill in. POST the collected fields as JSON:
 
    ```bash
    curl -sS -X POST "$JOIN_WEBHOOK_URL" \
@@ -216,7 +217,12 @@ For people who found this skill outside the group.
    **pending application**, nothing more — no member ID, no points, no roster
    entry until a human approves it.
 
-   **Otherwise** — give them `JOIN_FORM_URL` and have them fill it themselves.
+   Report the reply back plainly. A rejection usually means the domain already
+   applied — say so rather than retrying.
+
+   **Fallback only** — if the POST fails, or `JOIN_WEBHOOK_URL` is unset, give
+   them `JOIN_FORM_URL`. Don't lead with the form; it asks for less than you've
+   already collected.
 
 6. Explain the two things that matter:
    - Authority is **verified by us**, not taken from the application. Claimed
