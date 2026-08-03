@@ -8,3 +8,6 @@ __pycache__/
 
 # Built bundle — distributed via GitHub Releases, not committed
 dist/
+
+# Launch copy — local working files, not part of the distributed skill
+community/
