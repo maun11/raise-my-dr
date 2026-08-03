@@ -25,7 +25,7 @@ in rings.
 ## CONFIG — set these before first use
 
 ```
-ROSTER_CSV_URL   = <published Google Sheet CSV of the Roster tab — NOT an /edit link>
+ROSTER_CSV_URL   = https://docs.google.com/spreadsheets/d/1DJg9zJXiMo_vgXDg8okkUPKGWEs-eq-k5N2PqtJGu-c/export?format=csv&gid=188717060
 JOIN_FORM_URL    = https://docs.google.com/forms/d/e/1FAIpQLScNiPNmj9IikGWvn_KVziP5ol0aOFwIZlsz-8dmP-KQjbnumw/viewform
 SUBMIT_FORM_URL  = <Google Form for manual URL submission>
 JOIN_WEBHOOK_URL = https://growth-n8n.hee8kl.easypanel.host/webhook/backlink-join
